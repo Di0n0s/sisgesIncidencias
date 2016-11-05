@@ -146,7 +146,7 @@ public class IncidenciasJDBC {
         String query = "SELECT fecha_hora, empleados.username as origen, destino, tipo, detalle " //Seleccionamos de la unión, las columnas que queremos
                 + "FROM incidencias JOIN empleados " //Unimos las dos tablas...
                 + "ON incidencias.origen = username" //...Donde la columna origen de incidencias es igual al username de Empleado
-                + "WHERE id_incidencia="+idIncidencia; // Donde la id es igual a la id que nos proporcionan
+                + "WHERE id_incidencia="+idIncidencia+";"; // Donde la id es igual a la id que nos proporcionan
         Statement consulta = conexion.createStatement();
         ResultSet resultado = consulta.executeQuery(query);
         if(resultado.next()){
@@ -221,7 +221,7 @@ public class IncidenciasJDBC {
         String query = "SELECT id_incidencia, fecha_hora, empleados.username as origen, destino, tipo, detalle " //Seleccionamos de la unión, las columnas que queremos
                 + "FROM incidencias JOIN empleados " //Unimos las dos tablas...
                 + "ON incidencias.origen = username" //...Donde la columna origen de incidencias es igual al username de Empleado
-                + "WHERE origen="+username; // Donde la id es igual a la id que nos proporcionan
+                + "WHERE origen="+username+";"; // Donde la id es igual a la id que nos proporcionan
         Statement consulta = conexion.createStatement();
         ResultSet resultado = consulta.executeQuery(query);
         while(resultado.next()){
