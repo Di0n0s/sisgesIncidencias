@@ -188,7 +188,7 @@ public class TestJDBC {
 //        
 //        }
         
-//        //4C. Consultar todas las incidencias (FUNCIONA)
+//        //4C. Obtener el ranking de los empleados por cantidad de incidencias urgentes creadas (más incidencias primero). (FUNCIONA)
 //        try{
 //            System.out.println("Listado de Ranking de Urgencias por Usuario");
 //            List<Historial> RankingUrgencias = miGestor.getRankingUrgenciasGroupByUsername();
@@ -201,7 +201,19 @@ public class TestJDBC {
 //
 //            System.out.println("El listado no se ha podido mostrar por el siguiente fallo: "+ex.getMessage());
 //        }
-//        
+//      
+        //4D. Obtener la posición dentro del ranking para un empleado concreto.
+        Empleados e = new Empleados("amartinez");
+        try{
+            System.out.println("Listado de Ranking de Urgencias por Usuario");
+            List<Historial> PosicionEmpleado = miGestor.getPosicionEmpleado();
+            System.out.println(PosicionEmpleado.indexOf("amartinez"));
+
+        } catch (SQLException ex) {
+
+            System.out.println("El listado no se ha podido mostrar por el siguiente fallo: "+ex.getMessage());
+        }
+        
     }
     
 }

@@ -298,7 +298,7 @@ public class IncidenciasJDBC {
     public List<Historial> getRankingUrgenciasGroupByUsername () throws SQLException{
         List<Historial> RankingUrgencias = new ArrayList<>();
         conectar();
-        String query = "SELECT username, COUNT(id_incidencia) AS 'Nº Incidencias Urgentes' FROM historial WHERE tipo_evento = 'U' group by username;";
+        String query = "SELECT username, COUNT(id_incidencia) AS 'Nº Incidencias Urgentes' FROM historial WHERE tipo_evento = 'U' group by username ORDER BY COUNT(id_incidencia) DESC;";
         Statement consulta = conexion.createStatement();
         ResultSet resultado = consulta.executeQuery(query);
         while(resultado.next()){//Bucle que recorre las filas de la consulta
@@ -311,6 +311,13 @@ public class IncidenciasJDBC {
         consulta.close();
         desconectar();
         return RankingUrgencias;
+    }
+    
+    //4D. Obtener la posición dentro del ranking para un empleado concreto.
+    public List<Historial> getPosicionEmpleado() throws SQLException{
+        List<Historial> PosicionEmpleado = new ArrayList<>();
+        getRankingUrgenciasGroupByUsername();
+        return PosicionEmpleado;
     }
     
     //4B. Obtener la fecha-hora del último inicio de sesión para un empleado concreto.

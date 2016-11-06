@@ -39,7 +39,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES ('amartinez','lmg254','Antonio Martínez Rodríguez','+34956214789'),('jperez','trz254','Jose Pérez Fernández','+34985365235');
+INSERT INTO `empleados` VALUES ('amartinez','lmg254','Antonio Martínez Rodríguez','+34956214789'),('cnavarro','mav164','Camilo Navarro Montesino','+34687325815'),('jperez','trz254','Jose Pérez Fernández','+34985365235'),('sfernandez','pqb937','Sergio Fernández Moreno','+34684200587');
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,15 +51,14 @@ DROP TABLE IF EXISTS `historial`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `historial` (
-  `id_incidencia` int(11) NOT NULL,
+  `id_incidencia` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_evento` varchar(1) NOT NULL,
   `fecha_hora` varchar(45) NOT NULL,
   `username` varchar(45) NOT NULL,
   PRIMARY KEY (`id_incidencia`),
   KEY `username_FK_idx` (`username`),
-  CONSTRAINT `id_incidencias_FK` FOREIGN KEY (`id_incidencia`) REFERENCES `incidencias` (`id_incidencia`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `username_FK` FOREIGN KEY (`username`) REFERENCES `empleados` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +67,7 @@ CREATE TABLE `historial` (
 
 LOCK TABLES `historial` WRITE;
 /*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` VALUES (2,'I','2016/11/05-07:54:57:49','jperez'),(3,'U','2016/11/05-08:59:00:326','amartinez'),(4,'U','2016/11/05-09:00:06:405','amartinez'),(5,'U','2016/11/05-09:03:08:554','amartinez'),(6,'C','2016/11/05-09:31:56:577','amartinez'),(7,'C','2016/11/05-09:32:17:773','amartinez'),(8,'I','2016/11/05-10:54:04:881','jperez'),(9,'I','2016/11/05-10:54:09:475','jperez'),(10,'U','2016/11/06-12:40:12:162','jperez'),(11,'U','2016/11/06-12:40:14:896','jperez'),(12,'U','2016/11/06-12:43:28:538','sfernandez'),(13,'U','2016/11/06-07:10:41:830','cnavarro'),(14,'C','2016/11/06-07:38:09:170','amartinez'),(15,'I','2016/11/06-07:59:45:338','cnavarro'),(16,'C','2016/11/06-09:54:14:284','amartinez');
 /*!40000 ALTER TABLE `historial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,8 +87,10 @@ CREATE TABLE `incidencias` (
   `detalle` varchar(100) NOT NULL,
   PRIMARY KEY (`id_incidencia`),
   KEY `origen_FK_idx` (`origen`),
+  KEY `destino_FK_idx` (`destino`),
+  CONSTRAINT `destino_FK` FOREIGN KEY (`destino`) REFERENCES `empleados` (`username`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `origen_FK` FOREIGN KEY (`origen`) REFERENCES `empleados` (`username`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -97,7 +99,7 @@ CREATE TABLE `incidencias` (
 
 LOCK TABLES `incidencias` WRITE;
 /*!40000 ALTER TABLE `incidencias` DISABLE KEYS */;
-INSERT INTO `incidencias` VALUES (1,'2014/12/01-15:01:22:31','jperez','amartinez','Normal','La impresora no funciona'),(5,'2016/10/30-05:09:43:451','amartinez','plopez','Normal','La impresora no tiene toner'),(6,'2016/10/30-05:10:11:711','amartinez','plopez','Normal','La impresora no tiene toner'),(7,'2016/10/30-05:10:41:827','amartinez','plopez','Normal','La impresora no tiene toner'),(8,'2016/10/30-05:14:50:55','amartinez','plopez','Normal','La impresora no tiene toner');
+INSERT INTO `incidencias` VALUES (1,'2014/12/01-15:01:22:31','jperez','amartinez','Normal','La impresora no funciona'),(9,'2016/11/05-08:12:07:488','amartinez','amartinez','Normal','La impresora no tiene toner'),(11,'2016/11/05-08:21:36:426','amartinez','jperez','Normal','La impresora no tiene toner'),(12,'2016/11/05-08:56:28:837','amartinez','jperez','Normal','La impresora no tiene toner'),(13,'2016/11/05-08:57:57:92','amartinez','jperez','Urgente','La impresora no tiene toner'),(14,'2016/11/05-08:59:00:135','amartinez','jperez','Urgente','La impresora no tiene toner'),(15,'2016/11/05-09:00:06:209','amartinez','jperez','Urgente','La impresora no tiene toner'),(16,'2016/11/05-09:03:08:356','amartinez','jperez','Urgente','La impresora no tiene toner'),(17,'2016/11/06-12:40:11:940','jperez','amartinez','Urgente','La impresora no tiene toner'),(18,'2016/11/06-12:40:14:720','jperez','amartinez','Urgente','La impresora no tiene toner'),(19,'2016/11/06-12:43:28:352','sfernandez','jperez','Urgente','La impresora no tiene toner'),(20,'2016/11/06-06:44:14:541','cnavarro','sfernandez','Normal','El ranking me está volviendo loco'),(21,'2016/11/06-06:44:31:272','cnavarro','sfernandez','Normal','El ranking me está volviendo loco'),(22,'2016/11/06-07:10:41:727','cnavarro','sfernandez','Urgente','El ranking me está volviendo loco');
 /*!40000 ALTER TABLE `incidencias` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-10-30 20:25:37
+-- Dump completed on 2016-11-06 23:15:14
