@@ -14,7 +14,7 @@ public class Incidencias {
     private int idIncidencia;
     private String fechaHora;
     private Empleados origen;
-    private String destino;
+    private Empleados destino;
     private String tipo;
     private String detalle;
 
@@ -22,12 +22,20 @@ public class Incidencias {
         idIncidencia = 0;
         fechaHora = "";
         origen = new Empleados();
-        destino = "";
+        destino = new Empleados();
         tipo = "";
         detalle = "";
     }
 
-    public Incidencias(int idIncidencia, String fechaHora, Empleados origen, String destino, String tipo, String detalle) {
+    public Incidencias(String fechaHora, Empleados origen, Empleados destino, String tipo, String detalle) {
+        this.fechaHora = fechaHora;
+        this.origen = origen;
+        this.destino = destino;
+        this.tipo = tipo;
+        this.detalle = detalle;
+    }
+
+    public Incidencias(int idIncidencia, String fechaHora, Empleados origen, Empleados destino, String tipo, String detalle) {
         this.idIncidencia = idIncidencia;
         this.fechaHora = fechaHora;
         this.origen = origen;
@@ -60,11 +68,11 @@ public class Incidencias {
         this.origen = origen;
     }
 
-    public String getDestino() {
+    public Empleados getDestino() {
         return destino;
     }
 
-    public void setDestino(String destino) {
+    public void setDestino(Empleados destino) {
         this.destino = destino;
     }
     

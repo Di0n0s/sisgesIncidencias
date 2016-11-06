@@ -19,7 +19,7 @@ public class TestJDBC {
     
     public static void main (String [] args){
         IncidenciasJDBC miGestor = new IncidenciasJDBC(); //?
-//        //2C. Test de actualizar empleado
+//        //2C. Test de actualizar empleado (FUNCIONA)
 //        Empleados e1 = new Empleados("jperez", "trz254");
 //        Empleados e2 = new Empleados("jperez", "plq657", "Jose Pérez Fernández", "+34985365235");
 //        try {
@@ -31,7 +31,7 @@ public class TestJDBC {
 //
 //            System.out.println("El empleado no ha sido actualizado por el siguiente motivo: "+ex.getMessage());
         
-//        //2D.Test de actualizar contraseña
+//        //2D.Test de actualizar contraseña (FUNCIONA)
 //        Empleados e1 = new Empleados("jperez", "plq657");
 //        Empleados e2 = new Empleados("jperez", "trz254");
 //        try {
@@ -62,12 +62,13 @@ public class TestJDBC {
             
        
         
-//        //2B.Prueba de validar usuario con usuario y contraseña
+//        //2B.Prueba de validar usuario con usuario y contraseña (FUNCIONA)
 //        Empleados e = new Empleados("jperez", "trz254");
 //        try{
 //            if(miGestor.validarEmpleado(e)){
 //                System.out.println("Prueba de validar usuario...");
 //                System.out.println("Usuario valido!");
+//                
 //            }  
 //            
 //        }catch (SQLException ex) {
@@ -75,8 +76,8 @@ public class TestJDBC {
 // 
 //        }
 //        
-//        //2A.Test de insertar empleado
-//        Empleados e = new Empleados("amartinez", "lmg254", "Antonio Martínez Rodríguez", "+34956214789");
+//        //2A.Test de insertar empleado (FUNCIONA)
+//        Empleados e = new Empleados("sfernandez", "pqb937", "Sergio Fernández Moreno", "+34684200587");
 //        try{
 //            System.out.println("Insertando empleado...");
 //            miGestor.insertarEmpleado(e);
@@ -87,8 +88,8 @@ public class TestJDBC {
 //            System.out.println("El empleado no ha sido insertado por el siguiente motivo: "+ex.getMessage());
 //        
 //        }
-        
-//        //2E.Test de eliminar empleado
+//        
+//        //2E.Test de eliminar empleado (FUNCIONA)
 //        Empleados e = new Empleados("amartinez","lmg254");
 //        try{
 //            System.out.println("Eliminando empleado...");
@@ -101,13 +102,14 @@ public class TestJDBC {
 //        
 //        }
         
-//        //3C. Insertar una incidencia a partir de un objeto de clase Incidencia
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyy/MM/dd-hh:mm:ss:SS"); //Indicamos como queremos que se muestre la fecha y hora
+//        //3C. Insertar una incidencia a partir de un objeto de clase Incidencia (FUNCIONA)
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd-hh:mm:ss:SS"); //Indicamos como queremos que se muestre la fecha y hora
 //        Date ahoramismo = new Date(); //Creamos un new Date para la fecha y hora actual
 //        String fechaHoraenTexto = sdf.format(ahoramismo); //Creamos un string indicando al sdf que mofique el formato del dato
 //        System.out.println(fechaHoraenTexto); //Lo imprimimos por pantalla 
-//        Empleados e = new Empleados("amartinez", "lmg254", "Antonio Martínez Rodríguez", "+34956214789");
-//        Incidencias i = new Incidencias (0,fechaHoraenTexto, e, "plopez", "Normal", "La impresora no tiene toner");
+//        Empleados e1 = new Empleados("sfernandez", "pqb937", "Sergio Fernández Moreno", "+34684200587");
+//        Empleados e2 = new Empleados("jperez");
+//        Incidencias i = new Incidencias (fechaHoraenTexto, e1, e2, "Urgente", "La impresora no tiene toner");
 //        try{
 //            System.out.println("Insertando incidencia...");
 //            miGestor.insertarIncidencia(i);
@@ -121,18 +123,17 @@ public class TestJDBC {
 //        
 //        }
         
-//        //3A. Consultar una incidencia por su ID (FALLA)
+//        //3A. Consultar una incidencia por su ID (FUNCIONA)
 //        System.out.println("Consultar una incidencia por su ID");
 //        try{
-//            Incidencias consultada = miGestor.getIncidenciaByID(5);
-//            System.out.println("consultada");
-//            
+//            Incidencias consultada = miGestor.getIncidenciaByID(1);
+//            System.out.println(consultada);
 //        }catch( SQLException ex) {
-//            System.out.println("La incidencia no puede ser consultada por el siguiente motivo: "+ex.getMessage());
+//           System.out.println("La incidencia no puede ser consultada por el siguiente motivo: "+ex.getMessage());
 //        
 //        }
         
-//        //3B. Consultar todas las incidencias
+//        //3B. Consultar todas las incidencias (FUNCIONA)
 //        try{
 //            System.out.println("Listado de incidencias");
 //            List<Incidencias> lasIncidencias = miGestor.consultaTodaslasIncidencias();
@@ -146,7 +147,7 @@ public class TestJDBC {
 //            System.out.println(ex.getMessage());
 //        }
         
-//        //3D. Obtener las incidencias creadas a traves de un objeto de la clase Empleado.(FALLA)
+//        //3D. Obtener las incidencias para un empleado a partir de un objeto de clase Empleado. (FUNCIONA)
 //        System.out.println("Obtener las incidencias para el empleado");
 //        Empleados e = new Empleados ("amartinez", "lmg254", "Antonio Martínez Rodríguez", "+34956214789");
 //        try{
@@ -162,19 +163,45 @@ public class TestJDBC {
 //        
 //        }
         
-        //3E.	Obtener las incidencias creadas por un empleado concreto. (FALLA)
-        System.out.println("Consultar Incidencia de un empleado");
-        try{
-            List<Incidencias> lasIncidencias = miGestor.getIncidenciaByOrigen("amartinez");
-            for (Incidencias incidenciaActual : lasIncidencias){
-                System.out.println(incidenciaActual);/*TestJDBC.Incidencias@... Le estamos pidiendo que imprima el "object", usa el .toString e imprime esto --> 
-                *Vamos a sobreescribirlo para que nos muestre los datos del "object" que queremos*/
-            }
-        }catch (SQLException ex) {
-            System.out.println("La incidencia no puede ser consultada por el siguiente motivo: "+ex.getMessage());
+//        //3E.	Obtener las incidencias creadas por un empleado concreto (FUNCIONA)
+//        System.out.println("Consultar Incidencias de un empleado");
+//        Empleados e = new Empleados ("amartinez", "lmg254", "Antonio Martínez Rodríguez", "+34956214789");
+//        try{
+//            List<Incidencias> lasIncidencias = miGestor.getIncidenciaByOrigen(e);
+//            for (Incidencias incidenciaActual : lasIncidencias){
+//                System.out.println(incidenciaActual);/*TestJDBC.Incidencias@... Le estamos pidiendo que imprima el "object", usa el .toString e imprime esto --> 
+//                *Vamos a sobreescribirlo para que nos muestre los datos del "object" que queremos*/
+//            }
+//        }catch (SQLException ex) {
+//            System.out.println("La incidencia no puede ser consultada por el siguiente motivo: "+ex.getMessage());
+//        
+//        }  
         
-        }        
+//        //4B. Obtener la fecha-hora del último inicio de sesión para un empleado concreto (FUNCIONA)
+//        System.out.println("Consultar el último login de un empleado concreto");
+//        Empleados e = new Empleados ("jperez");
+//        try{
+//            Historial fechaHora = miGestor.getFechaHoraUltimoLogin(e);
+//            System.out.println("El usuario "+e.getUsername()+" hizo su último login: "+fechaHora);
+//        }catch( SQLException ex) {
+//           System.out.println("La consulta no puede ser rrealizada por el siguiente motivo: "+ex.getMessage());
+//        
+//        }
         
+//        //4C. Consultar todas las incidencias (FUNCIONA)
+//        try{
+//            System.out.println("Listado de Ranking de Urgencias por Usuario");
+//            List<Historial> RankingUrgencias = miGestor.getRankingUrgenciasGroupByUsername();
+//            for (Historial urgenciaActual : RankingUrgencias){
+//                System.out.println(urgenciaActual);/*TestJDBC.Incidencias@... Le estamos pidiendo que imprima el "object", usa el .toString e imprime esto --> 
+//                *Vamos a sobreescribirlo para que nos muestre los datos del "object" que queremos*/
+//              
+//            }
+//        } catch (SQLException ex) {
+//
+//            System.out.println("El listado no se ha podido mostrar por el siguiente fallo: "+ex.getMessage());
+//        }
+//        
     }
     
 }

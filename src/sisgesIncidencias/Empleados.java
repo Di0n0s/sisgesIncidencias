@@ -23,6 +23,10 @@ public class Empleados {
         telefono = "";
     }
 
+    public Empleados(String username) {
+        this.username = username;
+    }
+
     public Empleados(String username, String password) {
         this.username = username;
         this.password = password;

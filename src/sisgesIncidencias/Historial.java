@@ -11,30 +11,30 @@ package sisgesIncidencias;
  */
 public class Historial {
     
-    private Incidencias idIncidencia;
+    private int idIncidencia;
     private String tipoEvento;
-    private Incidencias fechaHora;
+    private String fechaHora;
     private Empleados username;
 
     public Historial() {
-        idIncidencia = new Incidencias();
+        idIncidencia = 0;
         tipoEvento = "";
-        fechaHora = new Incidencias();
+        fechaHora = "";
         username = new Empleados();
     }
 
-    public Historial(Incidencias idIncidencia, String tipoEvento, Incidencias fechaHora, Empleados username) {
+    public Historial(int idIncidencia, String tipoEvento, String fechaHora, Empleados username) {
         this.idIncidencia = idIncidencia;
         this.tipoEvento = tipoEvento;
         this.fechaHora = fechaHora;
         this.username = username;
     }
         
-    public Incidencias getIdIncidencia() {
+    public int getIdIncidencia() {
         return idIncidencia;
     }
 
-    public void setIdIncidencia(Incidencias idIncidencia) {
+    public void setIdIncidencia(int idIncidencia) {
         this.idIncidencia = idIncidencia;
     }
 
@@ -46,11 +46,11 @@ public class Historial {
         this.tipoEvento = tipoEvento;
     }
 
-    public Incidencias getFechaHora() {
+    public String getFechaHora() {
         return fechaHora;
     }
 
-    public void setFechaHora(Incidencias fechaHora) {
+    public void setFechaHora(String fechaHora) {
         this.fechaHora = fechaHora;
     }
 
@@ -62,4 +62,14 @@ public class Historial {
         this.username = username;
     }
 
+    @Override
+    public String toString() {
+        return "Nº Incidencias Urgentes= " + idIncidencia + ", username= " + username + "";
+    }
+
+
+
+
+
+    
 }
